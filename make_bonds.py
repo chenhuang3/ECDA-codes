@@ -98,7 +98,7 @@ edges = {}
 
 # threshold of the bonds 
 bond_CH = 1.5
-bond_OH = 2.1
+bond_OH = 1.5
 bond_CC = 2.0
 bond_HH = 1.6
 bond_CO = 2.0
