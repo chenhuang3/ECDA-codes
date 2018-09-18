@@ -1,11 +1,14 @@
 #!/usr/bin/python
 
 import numpy as np
+import sys
+
+
 
 ##################### Dijkstra's Algorithm #################
 # http://www.gilles-bertrand.com/2014/03/dijkstra-algorithm-python-example-source-code-shortest-path.html
 
-def dijkstra(graph,src,dest,visited=[],distances={},predecessors={}):
+def dijkstra(graph,src,dest,visited=[],distances={},predecessors={},print_out=None):
     """ calculates a shortest path tree routed in src
     """    
     # a few sanity checks
@@ -21,7 +24,8 @@ def dijkstra(graph,src,dest,visited=[],distances={},predecessors={}):
         while pred != None:
             path.append(pred)
             pred=predecessors.get(pred,None)
-        print('shortest path: '+str(path)+" cost="+str(distances[dest])) 
+        if print_out>0:
+           print('shortest path: '+str(path)+" cost="+str(distances[dest])) 
         return str(distances[dest])
     else :     
         # if it is the initial  run, initializes the cost
@@ -44,7 +48,7 @@ def dijkstra(graph,src,dest,visited=[],distances={},predecessors={}):
             if k not in visited:
                 unvisited[k] = distances.get(k,float('inf'))        
         x=min(unvisited, key=unvisited.get)
-        return dijkstra(graph,x,dest,visited,distances,predecessors)
+        return dijkstra(graph,x,dest,visited,distances,predecessors,print_out)
 
 
 ####################################
@@ -61,7 +65,7 @@ def dijkstra(graph,src,dest,visited=[],distances={},predecessors={}):
 
 ################# load XYZ file ############
 
-nb=4
+nb = int(raw_input("give Nb ==>  "))
 
 f = open("coord.xyz", "r")
 
@@ -100,9 +104,13 @@ edges = {}
 bond_CH = 1.5
 bond_OH = 1.5
 bond_CC = 2.0
-bond_HH = 1.6
+bond_HH = 1.3
 bond_CO = 2.0
-bond_OO = 2.2
+bond_OO = 2.1
+bond_NO = 2.0
+bond_CN = 2.0
+bond_NH = 1.6
+bond_NN = 2.0
 
 
 for i in range(natom): 
@@ -154,12 +162,12 @@ for i in range(natom):
    edges[e1] = d
 
 
-
 print "number of atoms: ",natom
 print "number of bonds: ",nbond/2
 print "edges: \n",edges
  
-#cost = dijkstra(edges, '1', '8')
+#print dijkstra(edges, '1', '25')
+#stop
 
 nlist = np.zeros([natom,natom])
 nat = np.zeros([natom,1])
@@ -171,11 +179,15 @@ for i in range(natom):
    for j in range(natom): 
 
       if (j==i): continue 
+
       visited=[]
       distances={}
       predecessors={}
-      ###print str(int(at_index[i])), str(int(at_index[j]))
-      cost = int(dijkstra(edges, str(int(at_index[i])), str(int(at_index[j])), visited, distances, predecessors))
+      print_out = -1
+      node1 = str(int(at_index[i]))
+      node2 = str(int(at_index[j]))
+      cost = int(dijkstra(edges, node1, node2, visited, distances, predecessors, print_out))
+
       if cost<=nb: 
          nlist[i][n] = int(j+1)
          n = n + 1
@@ -183,9 +195,9 @@ for i in range(natom):
 
 
  
-print "\n\n\nnumber of atoms: ",natom
-print "number of bonds: ",nbond/2
-print "edges: \n",edges
+#print "\n\n\nnumber of atoms: ",natom
+#print "number of bonds: ",nbond/2
+#print "edges: \n",edges
 
 
 
@@ -200,15 +212,4 @@ for i in range(natom):
          print "%3d"%int(aa),
    
    print ""
-
-
-
-
-
-
-
-
-
-
-
 
