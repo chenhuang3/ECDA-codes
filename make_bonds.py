@@ -1,5 +1,20 @@
 #!/usr/bin/python
 
+############################################################
+# how to use? 
+#
+# copy the atom cooridates from the param.ini file 
+# or just put the cooridates of the atoms in the following foramte 
+# 
+# 1    1      9.404900    5.894900    3.355900 
+# 2    1      9.602500    4.140200    3.074900 
+# 3    1     11.810400    5.397200    2.981600 
+# 4    1     11.570100    5.918600    4.660200 
+# 5    1     14.021100    4.256200    3.713600 
+# 
+# Then run the program 
+############################################################
+
 import numpy as np
 import sys
 
