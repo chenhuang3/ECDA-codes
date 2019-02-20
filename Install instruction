@@ -2,4 +2,4 @@ On Stampede2, the CPUs on login node and job nodes are different.
 If we use "-xHost", we will have the "illegal instruction" error. 
 To avoid these CPU instructions, we manually set the FCFLAGS and CCFLAGS to avoid "xHost".
 
-./configure FC=ifort CC=icc --with-dft-flavor='libxc+bigdft' FCFLAGS="-O2"  CCFLAGS="-O2
+./configure FC=ifort CC=icc --with-dft-flavor='libxc+bigdft' FCFLAGS="-xMIC-AVX512  -O3"  CCFLAGS="-xMIC-AVX512  -O3"
