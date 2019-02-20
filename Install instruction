@@ -1,4 +1,6 @@
 On Stampede2, the CPUs on login node and job nodes are different. If we use "-xHost", we will have the "illegal instruction" error. 
-To avoid these CPU instructions, we manually set the FCFLAGS and CCFLAGS. Following is for KNL nodes.
+To avoid these CPU instructions, we manually set the FCFLAGS and CCFLAGS. Following is for KNL nodes. 
+As suggested by TACC (https://portal.tacc.utexas.edu/user-guides/stampede2#building-performance-architecture), here is the configuration
 
-./configure FC=ifort CC=icc --with-dft-flavor='libxc+bigdft' FCFLAGS="-xMIC-AVX512  -O2  -g -extend-source -vec-report0 -noaltparam -nofpscomp"  CCFLAGS="-xMIC-AVX512  -O2 -g -extend-source -vec-report0 -noaltparam -nofpscomp"
+
+./configure FC=ifort CC=icc --with-dft-flavor=bigdft+libxc FCFLAGS="-O2  -g -extend-source -vec-report0 -noaltparam -nofpscomp  -xCORE-AVX2 -axCORE-AVX512,MIC-AVX512"  CCFLAGS="-O2 -g -extend-source -vec-report0 -noaltparam -nofpscomp  -xCORE-AVX2 -axCORE-AVX512,MIC-AVX512"
