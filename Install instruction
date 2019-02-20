@@ -1,0 +1,3 @@
+On Stampede2, to avoid using some instructions of intel CPU, we manually set the FCFLAGS and CCFLAGS
+
+./configure FC=ifort CC=icc --with-dft-flavor='libxc+bigdft' FCFLAGS="-O2"  CCFLAGS="-O2
