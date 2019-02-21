@@ -3,4 +3,4 @@ To avoid these CPU instructions, we manually set the FCFLAGS and CCFLAGS. Follow
 As suggested by TACC (https://portal.tacc.utexas.edu/user-guides/stampede2#building-performance-architecture), here is the configuration
 
 
-./configure FC=ifort CC=icc --with-dft-flavor=bigdft+libxc FCFLAGS="-O2  -g -extend-source -vec-report0 -noaltparam -nofpscomp  -xCORE-AVX2 -axCORE-AVX512,MIC-AVX512"  CCFLAGS="-O2 -g -extend-source -vec-report0 -noaltparam -nofpscomp  -xCORE-AVX2 -axCORE-AVX512,MIC-AVX512"
+./configure FC=gfortran CC=gcc --with-dft-flavor=bigdft+libxc FCFLAGS="-O2 -march=knl" CCFLAGS="-O2 -march=knl"
