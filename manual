@@ -1,11 +1,11 @@
-1) run ref_rho job 
- - molecule is at the center of the box. better to be aligned with x, y, or z. 
- - ecut = 400 eV
- - distance to boundaries = 4 A
+1) run "ref_rho" job
+ - molecule should be at the center of the box. It is better to be aligned with either x, y, or z. 
+ - set ecut = 400 eV
+ - distance to boundaries = 4 A (y and z direction)
+ - distance to boundaries = 7 A (in x direction) 
  
 
-2) run script ./extract_pot_xcpatch_no_spin.sh to extract KS potential from go_POT file. 
-
+2) run script "extract_pot_xcpatch_no_spin.sh" to extract KS potential from go_POT file. The output is "init_guess_total_vks.dat".
 
 3) find file "init_guess_total_vks.dat" in the upper directory. 
 
